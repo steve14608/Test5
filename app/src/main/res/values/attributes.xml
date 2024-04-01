@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="component_progress">
+        <attr name="finished_num" format="integer"/>
+        <attr name="total_num" format="integer"/>
+    </declare-styleable>
+    <declare-styleable name="schedule_view">
+        <attr name="title" format="string"/>
+    </declare-styleable>
+</resources>
