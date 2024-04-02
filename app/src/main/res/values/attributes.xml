@@ -7,4 +7,10 @@
     <declare-styleable name="schedule_view">
         <attr name="title" format="string"/>
     </declare-styleable>
+    <declare-styleable name="component_navigation_bar">
+        <attr name="layout1" format="integer"/>
+        <attr name="layout2" format="integer"/>
+        <attr name="layout3" format="integer"/>
+        <attr name="layout4" format="integer"/>
+    </declare-styleable>
 </resources>

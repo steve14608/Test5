@@ -24,8 +24,8 @@ public class Main_schedule_view extends RelativeLayout {
     }
     protected void initattr(Context context,AttributeSet attrs) {
         TypedArray z = context.obtainStyledAttributes(attrs,R.styleable.schedule_view);
-        total_task_num=z.getInt(R.styleable.component_progress_total_num,0);
-        finished_task_num=z.getInt(R.styleable.component_progress_finished_num,0);
+        total_task_num=0;
+        finished_task_num=0;
         title=z.getString(R.styleable.schedule_view_title);
         ((TextView)findViewById(R.id.schedule_view_title)).setText(title);
         z.recycle();
