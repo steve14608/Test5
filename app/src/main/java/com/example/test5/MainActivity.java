@@ -1,12 +1,9 @@
 package com.example.test5;
 
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.view.View;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,12 +15,11 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.test5.tools.CustomViewPagerAdapter;
 import com.example.test5.tools.ListViewAdapter;
 
-import java.util.zip.Inflater;
 
 public class MainActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener, ViewPager.OnPageChangeListener {
-    private RadioGroup btnGroup;
-    private ViewPager viewpager;
-    private ListViewAdapter listViewAdapter;
+    private RadioGroup btnGroup;//导航栏的按钮组
+    private ViewPager viewpager;//主界面
+    private ListViewAdapter listViewAdapter;//
     private CustomViewPagerAdapter customViewPagerAdapter;
     private ListView listView;
     @Override
@@ -43,12 +39,12 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     }
 
     private void initialize(){
-        //先是获取控件
+        //先是获取基础控件
         btnGroup = (RadioGroup) findViewById(R.id.main_navigation_btnGroup);
         viewpager = (ViewPager) findViewById(R.id.main_viewPager);
         //fragmentAdapter = new MainFragmentAdapter(getSupportFragmentManager());
         customViewPagerAdapter = new CustomViewPagerAdapter();
-        //listView = (ListView)fragmentAdapter.getResource(1,R.id.main_view_list);
+        //listViewAdapter = new ListViewAdapter();
 
         //然后对控件进行初始化
         customViewPagerAdapter.addView(getLayoutInflater().inflate(R.layout.main_schedule,null,false));
@@ -64,11 +60,9 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         viewpager.addOnPageChangeListener(this);
         viewpager.setCurrentItem(0);
 
-        if(listView==null)Toast.makeText(this,"ListView is null",Toast.LENGTH_SHORT).show();
-        //if(fragmentAdapter.getItem(1)==null)
-
-
-
+        listView = customViewPagerAdapter.getView(1).findViewById(R.id.main_view_list);
+        listViewAdapter = new ListViewAdapter(customViewPagerAdapter.getView(1).getContext(),null);
+        listView.setAdapter(listViewAdapter);
 
     }
 

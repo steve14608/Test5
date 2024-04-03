@@ -19,12 +19,17 @@
         android:layout_height="0dp"
         android:layout_width="match_parent"
         android:layout_weight="1"
-        android:background="@color/sakura"
         android:orientation="horizontal"
         android:layout_gravity="bottom">
         <RadioButton
             style="@style/main_navigation_radio_btn"
-            android:id="@+id/main_navigation_btn0"/>
+            android:id="@+id/main_navigation_btn0"
+            android:text="计划"
+            android:drawableTop="@drawable/user_image_circle"
+
+            >
+
+        </RadioButton>
 
         <RadioButton
             style="@style/main_navigation_radio_btn"
@@ -32,7 +37,7 @@
         <ImageView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2.8"/>
+            android:layout_weight="2"/>
         <RadioButton
             style="@style/main_navigation_radio_btn"
             android:id="@+id/main_navigation_btn2"/>
