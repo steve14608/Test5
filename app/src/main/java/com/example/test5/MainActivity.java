@@ -2,6 +2,8 @@ package com.example.test5;
 
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.View;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -13,12 +15,17 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.test5.tools.MainFragmentAdapter;
+import com.example.test5.tools.CustomViewPagerAdapter;
+import com.example.test5.tools.ListViewAdapter;
+
+import java.util.zip.Inflater;
 
 public class MainActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener, ViewPager.OnPageChangeListener {
     private RadioGroup btnGroup;
     private ViewPager viewpager;
-    private MainFragmentAdapter fragmentAdapter;
+    private ListViewAdapter listViewAdapter;
+    private CustomViewPagerAdapter customViewPagerAdapter;
+    private ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,15 +46,28 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         //先是获取控件
         btnGroup = (RadioGroup) findViewById(R.id.main_navigation_btnGroup);
         viewpager = (ViewPager) findViewById(R.id.main_viewPager);
-        fragmentAdapter = new MainFragmentAdapter(getSupportFragmentManager());
+        //fragmentAdapter = new MainFragmentAdapter(getSupportFragmentManager());
+        customViewPagerAdapter = new CustomViewPagerAdapter();
+        //listView = (ListView)fragmentAdapter.getResource(1,R.id.main_view_list);
 
         //然后对控件进行初始化
+        customViewPagerAdapter.addView(getLayoutInflater().inflate(R.layout.main_schedule,null,false));
+        customViewPagerAdapter.addView(getLayoutInflater().inflate(R.layout.main_view,null,false));
+        customViewPagerAdapter.addView(getLayoutInflater().inflate(R.layout.main_concentrate,null,false));
+        customViewPagerAdapter.addView(getLayoutInflater().inflate(R.layout.main_user,null,false));
+
+
         RadioButton z = (RadioButton) btnGroup.getChildAt(0);
         z.setChecked(true);
-        viewpager.setAdapter(fragmentAdapter);
+        viewpager.setAdapter(customViewPagerAdapter);
         btnGroup.setOnCheckedChangeListener(this);
         viewpager.addOnPageChangeListener(this);
         viewpager.setCurrentItem(0);
+
+        if(listView==null)Toast.makeText(this,"ListView is null",Toast.LENGTH_SHORT).show();
+        //if(fragmentAdapter.getItem(1)==null)
+
+
 
 
     }
