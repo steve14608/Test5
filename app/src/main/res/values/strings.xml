@@ -9,4 +9,15 @@
     <string name="component_view_format">%1$d/%2$d</string>
     <string name="sub_target_gird_text1">推荐目标</string>
     <string name="sub_target_grid_text2">自定义目标</string>
+    <string name="main_navigation_btn1">计划</string>
+    <string name="main_navigation_btn2">视图</string>
+    <string name="main_navigation_btn3">专注</string>
+    <string name="main_navigation_btn4">我的</string>
+    <string name="test_short">字符</string>
+    <string name="test_medium">这是测试</string>
+    <string name="test_long">这是测试字符，旨在提供长字符以观察适配情况</string>
+    <string name="main_view_textView1">选择排序方式:</string>
+    <string name="main_view_textView2">反转:</string>
+    <string name="main_view_spinner_title">排序方式</string>
+
 </resources>

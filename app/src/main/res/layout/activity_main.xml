@@ -24,26 +24,22 @@
         <RadioButton
             style="@style/main_navigation_radio_btn"
             android:id="@+id/main_navigation_btn0"
-            android:text="计划"
-            android:drawableTop="@drawable/user_image_circle"
-
-            >
-
-        </RadioButton>
+            android:text="@string/main_navigation_btn1"
+            />
 
         <RadioButton
             style="@style/main_navigation_radio_btn"
-            android:id="@+id/main_navigation_btn1"/>
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"/>
+            android:id="@+id/main_navigation_btn1"
+            android:text="@string/main_navigation_btn2"/>
+
         <RadioButton
             style="@style/main_navigation_radio_btn"
-            android:id="@+id/main_navigation_btn2"/>
+            android:id="@+id/main_navigation_btn2"
+            android:text="@string/main_navigation_btn3"/>
         <RadioButton
             style="@style/main_navigation_radio_btn"
-            android:id="@+id/main_navigation_btn3"/>
+            android:id="@+id/main_navigation_btn3"
+            android:text="@string/main_navigation_btn4"/>
 
 
     </RadioGroup>

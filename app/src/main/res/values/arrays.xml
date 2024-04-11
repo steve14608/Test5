@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="main_view_spinner_array">
+        <item>默认</item>
+        <item>完成度</item>
+        <item>添加顺序</item>
+    </string-array>
+</resources>
