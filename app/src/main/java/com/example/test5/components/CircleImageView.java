@@ -16,7 +16,6 @@ import android.graphics.PixelFormat;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
@@ -28,15 +27,15 @@ import android.annotation.SuppressLint;
  * @author caizhiming
  *
  */
-public class Circle_image_view extends ImageView {
+public class CircleImageView extends ImageView {
     private Paint paint ;
-    public Circle_image_view(Context context) {
+    public CircleImageView(Context context) {
         this(context,null);
     }
-    public Circle_image_view(Context context, AttributeSet attrs) {
+    public CircleImageView(Context context, AttributeSet attrs) {
         this(context, attrs,0);
     }
-    public Circle_image_view(Context context, AttributeSet attrs, int defStyle) {
+    public CircleImageView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);//此处添加了抗锯齿标志
     }

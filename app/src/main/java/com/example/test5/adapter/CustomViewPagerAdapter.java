@@ -1,4 +1,4 @@
-package com.example.test5.tools;
+package com.example.test5.adapter;
 
 import android.view.View;
 import android.view.ViewGroup;
@@ -6,11 +6,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
-import com.example.test5.MainActivity;
-
 import java.util.ArrayList;
-import java.util.List;
-import java.util.zip.Inflater;
 
 public class CustomViewPagerAdapter extends PagerAdapter {
     private ArrayList<View> list ;

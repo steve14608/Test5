@@ -12,12 +12,12 @@ import androidx.annotation.Nullable;
 
 import com.example.test5.R;
 
-public class Main_schedule_view extends RelativeLayout {
+public class MainScheduleView extends RelativeLayout {
     private int total_task_num;
     private int finished_task_num;
     private String title;
 
-    public Main_schedule_view(Context context, @Nullable AttributeSet attrs) {
+    public MainScheduleView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         LayoutInflater.from(context).inflate(R.layout.component_schedule_view,this);
         initattr(context,attrs);
@@ -55,6 +55,13 @@ public class Main_schedule_view extends RelativeLayout {
             System.out.println("Error,finished task num i bigger than total task num");
             System.exit(-1);
         }
+        updateProgress();
+    }
+    public void addTask(){
+        addTask(1);
+    }
+    public void addTask(int num){
+        total_task_num+=num;
         updateProgress();
     }
 

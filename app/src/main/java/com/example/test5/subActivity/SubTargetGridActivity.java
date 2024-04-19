@@ -6,7 +6,7 @@ import android.widget.GridView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.test5.R;
-import com.example.test5.tools.GridViewAdapter;
+import com.example.test5.adapter.GridViewAdapter;
 
 public class SubTargetGridActivity extends AppCompatActivity {
     private GridViewAdapter gridViewAdapter;

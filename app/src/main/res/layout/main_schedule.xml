@@ -45,7 +45,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="10dp"
             tools:ignore="RtlHardcoded"/>
-        <com.example.test5.components.Main_schedule_view
+        <com.example.test5.components.MainScheduleView
             android:id="@+id/schedule_view_no_e_n"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginBottom="30dp"
             />
-        <com.example.test5.components.Main_schedule_view
+        <com.example.test5.components.MainScheduleView
             android:id="@+id/schedule_view_no_e_no_n"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
             android:layout_marginRight="30dp"
             android:layout_marginBottom="30dp"
             />
-        <com.example.test5.components.Main_schedule_view
+        <com.example.test5.components.MainScheduleView
             android:id="@+id/schedule_view_e_n"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginBottom="180dp"
             />
-        <com.example.test5.components.Main_schedule_view
+        <com.example.test5.components.MainScheduleView
             android:id="@+id/schedule_view_e_no_n"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

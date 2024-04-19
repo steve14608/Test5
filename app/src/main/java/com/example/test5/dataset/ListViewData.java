@@ -1,11 +1,7 @@
-package com.example.test5.data;
-
-import android.graphics.Color;
-import android.widget.ListView;
-
-import com.example.test5.R;
+package com.example.test5.dataset;
 
 public class ListViewData {
+    public int index;
     public int background;
     public boolean isDone;
     public String title;

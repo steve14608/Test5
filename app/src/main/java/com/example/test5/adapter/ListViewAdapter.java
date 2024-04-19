@@ -1,4 +1,4 @@
-package com.example.test5.tools;
+package com.example.test5.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,9 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.test5.R;
-import com.example.test5.data.ListViewData;
-
-import org.w3c.dom.Text;
+import com.example.test5.dataset.ListViewData;
 
 import java.util.LinkedList;
 

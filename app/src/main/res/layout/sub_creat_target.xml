@@ -10,7 +10,7 @@
         android:layout_height="0dp"
         android:layout_weight="4"
         android:orientation="vertical">
-        <com.example.test5.components.Circle_image_view
+        <com.example.test5.components.CircleImageView
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_gravity="center_horizontal"
