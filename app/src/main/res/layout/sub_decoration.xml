@@ -21,15 +21,10 @@
         custom:childTextSize="10sp"
         custom:childTextColor="@color/sakura"
         android:orientation="horizontal"/>
-    <GridView
-        android:id="@+id/gridView"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="8"
-        android:numColumns="2"
-        android:gravity="center_horizontal"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        />
+        android:layout_weight="8"/>
 
 </LinearLayout>

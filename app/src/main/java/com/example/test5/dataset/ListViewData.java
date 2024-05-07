@@ -2,19 +2,19 @@ package com.example.test5.dataset;
 
 public class ListViewData {
     public int index;
-    public int background;
+    public int type;
     public boolean isDone;
     public String title;
     public String subTitle;
     public ListViewData(){}
     public ListViewData(int a,boolean b,String c,String d){
-        background=a;
+        type=a;
         isDone=b;
         title =c;
         subTitle=d;
     }
-    public void setColor(int a){
-        background = a;
+    public void setType(int a){
+        type = a;
     }
     public void setIsDone(boolean a){
         isDone=a;
@@ -25,8 +25,8 @@ public class ListViewData {
     public void setSubTitle(String a){
         subTitle = a;
     }
-    public int getColorId(){
-        return background;
+    public int getType(){
+        return type;
     }
     public boolean getIsDone(){
         return isDone;

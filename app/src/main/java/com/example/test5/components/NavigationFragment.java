@@ -12,17 +12,22 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.test5.R;
+import com.example.test5.adapter.CustomFragmentAdapter;
 
 
 public class NavigationFragment extends Fragment {
-    public SQLiteDatabase database;
-    public int resourceId;
-    public NavigationFragment(SQLiteDatabase database, int resourceId){
+    protected SQLiteDatabase database;
+
+    protected int resourceId;
+    protected ViewPager viewPager;
+    public NavigationFragment(SQLiteDatabase database, int resourceId,ViewPager viewPager){
         super();
         this.database = database;
         this.resourceId=resourceId;
+        this.viewPager=viewPager;
     }
     public NavigationFragment(int resourceId){
         super();

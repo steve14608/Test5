@@ -10,23 +10,23 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class GridViewAdapter extends BaseAdapter {
-    private ArrayList<String> textTable;
+    private ArrayList<String> list;
     private Context mcontext;
     private GridView gridView;
     public GridViewAdapter(Context m, GridView z){
-        textTable = new ArrayList<String>();
+        list = new ArrayList<String>();
         mcontext=m;
         gridView=z;
 
     }
     @Override
     public int getCount() {
-        return textTable.size();
+        return list.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return textTable.get(position);
+        return list.get(position);
     }
 
     @Override
@@ -36,25 +36,21 @@ public class GridViewAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        AdapterTag atag = new AdapterTag();
-        if(convertView==null){
-            convertView = gridView;
-            atag.textView=new TextView(gridView.getContext());
-            convertView.setTag(atag);
-        }
-        else atag = (AdapterTag) convertView.getTag();
-        atag.textView.setText(textTable.get(position));
-        return convertView;
+        if(convertView!=null)return convertView;
+        TextView textView = new TextView(mcontext);
+        textView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        textView.setTextSize(14.0f);
+        return textView;
     }
     public void addItem(String a){
-        textTable.add(a);
+        list.add(a);
         notifyDataSetChanged();
+    }
+    public void addItems(ArrayList<String> list){
+        this.list.addAll(list);
     }
 
     public void testAdd(){//此函数是在测试阶段尝试添加一些组件到gridview，观察并进行调整的函数
 
-    }
-    public static class AdapterTag{
-        TextView textView;
     }
 }

@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 
 import com.example.test5.R;
 
+
 public class MainScheduleView extends RelativeLayout {
     private int total_task_num;
     private int finished_task_num;
@@ -31,6 +32,14 @@ public class MainScheduleView extends RelativeLayout {
         z.recycle();
         updateProgress();
     }
+    protected void updateComponent(){
+        ProgressBar progressBar = (ProgressBar)findViewById(R.id.schedule_view_progressBar);
+        progressBar.setProgress(finished_task_num);
+        progressBar.setMax(total_task_num);
+        TextView textView = (TextView)findViewById(R.id.schedule_view_progress);
+        textView.setText(String.format(getResources().getString(R.string.progress_format),finished_task_num,total_task_num));
+    }
+
     public String getTitle(){
         return title;
     }
@@ -42,9 +51,11 @@ public class MainScheduleView extends RelativeLayout {
     }
     public void setTotal_task_num(int num){
         total_task_num=num;
+        updateProgress();
     }
     public void setFinished_task_num(int num){
         finished_task_num=num;
+        updateProgress();
     }
     public void completeTask(){
         completeTask(1);

@@ -19,5 +19,13 @@
     <string name="main_view_textView1">选择排序方式:</string>
     <string name="main_view_textView2">反转:</string>
     <string name="main_view_spinner_title">排序方式</string>
-
+    <string name="progress_format">%1$d/%2$d</string>
+    <string name="main_concentrate_btn1">开始专注</string>
+    <string name="sub_setting_title">专注设置</string>
+    <string name="sub_setting_btn1">优先设置</string>
+    <string name="cancel">取消</string>
+    <string name="confirm">确认</string>
+    <string name="title">标题</string>
+    <string name = "subTitle">子标题</string>
+    <string name="type">类型</string>
 </resources>

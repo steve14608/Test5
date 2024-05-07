@@ -1,6 +1,7 @@
 package com.example.test5.adapter;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,54 +11,39 @@ import android.widget.TextView;
 
 import com.example.test5.R;
 
-import com.example.test5.dataset.GridViewDecorationData;
+import com.example.test5.dataset.DecorationGridViewData;
 
 import java.util.LinkedList;
 import java.util.ListIterator;
 
-public class GridViewDecorationAdapter extends BaseAdapter implements View.OnClickListener {
-    private LinkedList<GridViewDecorationData> list;
+public class DecorationGridViewAdapter extends BaseAdapter implements View.OnClickListener {
+    protected LinkedList<DecorationGridViewData> list;
     private int currentDecorated=0;
     private Context mcontext;
-    public GridViewDecorationAdapter(Context a){
+    public DecorationGridViewAdapter(Context a, SQLiteDatabase db){
         super();
-        list = new LinkedList<GridViewDecorationData>();
+        list = new LinkedList<DecorationGridViewData>();
         mcontext = a;
+        init(db);
     }
-    public GridViewDecorationAdapter(LinkedList<GridViewDecorationData> e,Context a){
-        list = e;
-        mcontext = a;
-    }
-    public void add(GridViewDecorationData a){
-        list.add(a);
-        //Toast.makeText(mcontext,"ad",Toast.LENGTH_SHORT).show();
-        notifyDataSetChanged();
-    }
-    public void add(LinkedList<GridViewDecorationData> li){
-        list.addAll(li);
-        notifyDataSetChanged();
+    protected void init(SQLiteDatabase db){
+
     }
     public void changeDecoratedStatus(int position,boolean a){
-        list.get(position).setDecorated(a);
+        list.get(position).isDecorated=a;
     }
     public void changeDecorated(int position){
         if(currentDecorated==position)return;
-        list.get(currentDecorated).setDecorated(false);
-        list.get(position).setDecorated(true);
+        list.get(currentDecorated).isDecorated=false;
+        list.get(position).isDecorated=true;
         currentDecorated=position;
-        notifyDataSetChanged();
-    }
-    public void changeGrid(LinkedList<GridViewDecorationData> li,int decoratedIndex){
-        list=li;
-        currentDecorated=decoratedIndex;
-        list.get(currentDecorated).setDecorated(true);
         notifyDataSetChanged();
     }
     public int getViewPoisition(String title){
         int num=0;
-        ListIterator<GridViewDecorationData> iterator = list.listIterator();
+        ListIterator<DecorationGridViewData> iterator = list.listIterator();
         while(iterator.hasNext()){
-            if(iterator.next().getTitle().compareTo(title)==0)return num;
+            if(iterator.next().title.compareTo(title)==0)return num;
             num++;
         }
         return num;
@@ -92,9 +78,9 @@ public class GridViewDecorationAdapter extends BaseAdapter implements View.OnCli
 
         }
         else aTag=(ATag) convertView.getTag();
-        aTag.a.setBackgroundResource(list.get(position).getIconResourceId());
-        aTag.b.setText(list.get(position).getTitle());
-        aTag.c.setText(list.get(position).isDecorated()?"已装扮" : "");
+        aTag.a.setBackgroundResource(list.get(position).icon);
+        aTag.b.setText(list.get(position).title);
+        aTag.c.setText(list.get(position).isDecorated?"已装扮" : "");
 
 
 

@@ -1,26 +1,32 @@
 package com.example.test5.AnnoyedFragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.test5.R;
+import com.example.test5.adapter.CustomFragmentAdapter;
 import com.example.test5.components.MainScheduleView;
 import com.example.test5.components.NavigationFragment;
+import com.example.test5.subActivity.SubCreateTargetActivity;
+import com.example.test5.subActivity.SubSettingActivity;
 
 public class FragmentSchedule extends NavigationFragment {
     MainScheduleView[] li = new MainScheduleView[4];
 
-    public FragmentSchedule(SQLiteDatabase database) {
-        super(database, R.id.main_schedule);
+    public FragmentSchedule(SQLiteDatabase database, ViewPager viewPager) {
+        super(database, R.id.main_schedule,viewPager);
 
     }
 
@@ -49,13 +55,57 @@ public class FragmentSchedule extends NavigationFragment {
             li[i].setTotal_task_num(da[i][0]);
             li[i].setFinished_task_num(da[i][1]);
         }
+        Toast.makeText(getContext(),li[0].getTotal_task_num()+"",Toast.LENGTH_SHORT).show();
         cursor.close();
         return v;
     }
 
     @Override
     public View addListener(View v) {
-        return super.addListener(v);
+
+        li[0].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((FragmentView)((CustomFragmentAdapter)viewPager.getAdapter()).getItem(1)).sort(1,0);
+                viewPager.setCurrentItem(1);
+            }
+        });
+        li[1].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((FragmentView)((CustomFragmentAdapter)viewPager.getAdapter()).getItem(1)).sort(1,1);
+                //Toast.makeText(getContext(),"success",Toast.LENGTH_SHORT).show();
+                viewPager.setCurrentItem(1);
+            }
+        });
+        li[2].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((FragmentView)((CustomFragmentAdapter)viewPager.getAdapter()).getItem(1)).sort(1,2);
+                viewPager.setCurrentItem(1);
+            }
+        });
+        li[3].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((FragmentView)((CustomFragmentAdapter)viewPager.getAdapter()).getItem(1)).sort(1,3);
+                viewPager.setCurrentItem(1);
+            }
+        });
+        v.findViewById(R.id.textView2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((FragmentView)((CustomFragmentAdapter)viewPager.getAdapter()).getItem(1)).sort(2,1);
+                viewPager.setCurrentItem(1);
+            }
+        });
+        v.findViewById(R.id.textView1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), SubCreateTargetActivity.class));
+            }
+        });
+        return v;
     }
 
     @Nullable

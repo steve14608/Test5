@@ -18,4 +18,7 @@
         <attr name="childTextSize" format="dimension"/>
         <attr name="childTextColor" format="reference"/>
     </declare-styleable>
+    <declare-styleable name="component_top_back_bar">
+        <attr name="topTitle" format="string"/>
+    </declare-styleable>
 </resources>

@@ -20,6 +20,7 @@ public class CustomViewPagerAdapter extends PagerAdapter {
     }
     public void addView(View v){
         list.add(v);
+        notifyDataSetChanged();
     }
 
     @Override
@@ -40,7 +41,7 @@ public class CustomViewPagerAdapter extends PagerAdapter {
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView(list.get(position));
-
+        notifyDataSetChanged();
     }
     public View getView(int position){
         return list.get(position);

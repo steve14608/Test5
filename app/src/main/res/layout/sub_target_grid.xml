@@ -14,7 +14,7 @@
         android:gravity="center_vertical"
         android:textStyle="bold"/>
     <GridView
-        android:id="@+id/sub_target_grid_gridView"
+        android:id="@+id/gridView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="7"

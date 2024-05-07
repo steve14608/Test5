@@ -1,8 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent"
+<!-- activity_focus_time.xml -->
+
+<!-- activity_focus_time.xml -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    >
+    android:layout_height="match_parent">
+
+    <!-- 头部导航栏 -->
+    <LinearLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <Button
+            android:id="@+id/btnSelectPlan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="选择专注计划"
+            android:textColor="@android:color/black"
+            android:layout_gravity="center"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="设置"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/mainContentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/headerLayout"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="16dp">
+
+        <!-- 显示专注时间的时钟 -->
+        <TextView
+            android:id="@+id/tvClock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="48sp"
+            android:text="30:00"
+            android:padding="110dp"
+            android:background="@drawable/circular_background"
+            android:textColor="@android:color/black"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <!-- 开始专注按钮 -->
+        <Button
+            android:id="@+id/btnStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_concentrate_btn1"
+            android:textColor="@android:color/white"/>
+
+    </LinearLayout>
 
 </RelativeLayout>
