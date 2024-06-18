@@ -3,7 +3,7 @@
 
 <!-- activity_focus_time.xml -->
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -13,63 +13,75 @@
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="16dp"
-        android:gravity="center_vertical">
+        android:paddingTop="16dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <Button
+        <ImageButton
             android:id="@+id/btnSelectPlan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="选择专注计划"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/component_select_sch_btn"
             android:textColor="@android:color/black"
-            android:layout_gravity="center"/>
+            android:tooltipText="选择专注计划" />
 
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
 
-        <Button
+        <ImageButton
             android:id="@+id/setting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="设置"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:gravity="center"/>
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/transparent"
+            android:src="@drawable/component_setting_btn"
+            android:tooltipText="设置" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/mainContentLayout"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tvClock"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/headerLayout"
-        android:orientation="vertical"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="100dp"
+        android:textColor="@android:color/black"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/currentState" />
+
+    <TextView
+        android:id="@+id/btnStart"
+        android:layout_width="294dp"
+        android:layout_height="100dp"
+        android:background="@drawable/start_con_btn"
         android:gravity="center"
-        android:padding="16dp">
+        android:scaleType="center"
+        android:text="@string/main_concentrate_btn1"
+        android:textColor="@color/black"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <!-- 显示专注时间的时钟 -->
-        <TextView
-            android:id="@+id/tvClock"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="48sp"
-            android:text="30:00"
-            android:padding="110dp"
-            android:background="@drawable/circular_background"
-            android:textColor="@android:color/black"
-            android:clickable="true"
-            android:focusable="true" />
+    <TextView
+        android:id="@+id/currentState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:background="@drawable/component_rec"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headerLayout" />
 
-        <!-- 开始专注按钮 -->
-        <Button
-            android:id="@+id/btnStart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/main_concentrate_btn1"
-            android:textColor="@android:color/white"/>
-
-    </LinearLayout>
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

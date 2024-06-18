@@ -17,11 +17,9 @@ import java.util.ArrayList;
 
 public class CustomFragmentAdapter extends FragmentPagerAdapter {
     ArrayList<Pair<Integer,Fragment>> list;
-    private SQLiteDatabase database;
-    public CustomFragmentAdapter(@NonNull FragmentManager fm, SQLiteDatabase da) {
+    public CustomFragmentAdapter(@NonNull FragmentManager fm) {
         super(fm);
-        list = new ArrayList<Pair<Integer,Fragment>>();
-        database = da;
+        list = new ArrayList<>();
     }
     public void addFragment(int resourceId){
         Fragment z = new Fragment(){

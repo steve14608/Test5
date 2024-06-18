@@ -12,11 +12,7 @@ public class CustomViewPagerAdapter extends PagerAdapter {
     private ArrayList<View> list ;
     public CustomViewPagerAdapter(){
         super();
-        list = new ArrayList<View>();
-    }
-    public CustomViewPagerAdapter(ArrayList<View> l){
-        super();
-        list = l;
+        list = new ArrayList<>();
     }
     public void addView(View v){
         list.add(v);

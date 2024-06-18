@@ -5,154 +5,194 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="?attr/actionBarSize"
     tools:ignore="ExtraText">
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/custom_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:contentInsetStart="0dp"
+        app:contentInsetStartWithNavigation="0dp"
+        tools:ignore="MissingConstraints">
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/background_block"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@drawable/ic_launcher_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.3"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@+id/custom_toolbar"
+        app:layout_constraintVertical_bias="0.029"
         app:layout_constraintVertical_weight="3">
 
         <!-- 在此 ConstraintLayout 中添加其他控件 -->
+        <!-- 顶部线条 -->
+        <View
+            android:id="@+id/topLine"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!-- 底部线条 -->
+        <View
+            android:id="@+id/bottomLine"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent" />
+        <ImageButton
 
-
-        <Button
             android:id="@+id/checkInButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="96dp"
+            android:layout_height="59dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:text="签到"
+            android:contentDescription="签到"
+            android:scaleType="centerCrop"
+            android:src="@drawable/component_attendance_btn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.95"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/settingsButton"
-            app:layout_constraintVertical_bias="0.04" />
+            app:layout_constraintHorizontal_bias="0.609"
+            app:layout_constraintStart_toEndOf="@+id/button6"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.125" />
 
-        <Button
-            android:id="@+id/settingsButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageButton
+            android:id="@+id/button6"
+            android:layout_width="96dp"
+            android:layout_height="59dp"
             android:layout_below="@id/checkInButton"
             android:layout_centerHorizontal="true"
-            android:text="公告"
+            android:contentDescription="公告"
+            android:scaleType="centerCrop"
+            android:src="@drawable/component_notice_btn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.95"
+            app:layout_constraintHorizontal_bias="0.574"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.23" />
+            app:layout_constraintVertical_bias="0.125" />
 
         <ImageView
+            android:scaleType="fitCenter"
             android:id="@+id/imageView1"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/xx"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.056"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.213"
-            tools:srcCompat="@tools:sample/avatars" />
+            />
 
-        <TextView
-            android:id="@+id/nicknameTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="13dp"
-            android:text="Your Nickname"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.058"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/pink"
+        android:layout_height="406dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.60"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.932">
+        app:layout_constraintTop_toBottomOf="@+id/background_block"
+        app:layout_constraintVertical_bias="0.0">
 
         <!-- 在此 ConstraintLayout 中添加其他控件 -->
 
-
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="160dp"
-            android:layout_height="80dp"
-            android:text="小组件"
+        <LinearLayout
+            app:layout_constraintVertical_bias="0.25"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#80FFFFFF"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.119"
             tools:ignore="MissingConstraints">
 
-        </Button>
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="160dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="48dp"
-            android:text="复盘计划"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.279"
-            tools:ignore="MissingConstraints" />
+            <!-- 第二个按钮 -->
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="160dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="48dp"
-            android:text="我的装扮"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.573"
-            tools:ignore="MissingConstraints" />
+            <include layout="@layout/component_divide_line"/>
 
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="160dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="48dp"
-            android:text="查看统计"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.867"
-            tools:ignore="MissingConstraints" />
+            <!-- 第三个按钮 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/button3">
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:focusable="false"
+                    android:src="@drawable/baseline_add_reaction_24" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:padding="10dp"
+                    android:text="我的装扮"
+                    android:focusable="false"
+                    android:textSize="30sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:focusable="false"
+                    android:src="@drawable/baseline_arrow_forward_ios_24" />
+
+            </LinearLayout>
+            <include layout="@layout/component_divide_line"/>
+
+            <!-- 第四个按钮 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/button4">
+
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="match_parent"
+                    android:focusable="false"
+                    android:src="@drawable/baseline_bar_chart_24" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="64dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:padding="10dp"
+                    android:text="查看统计"
+                    android:focusable="false"
+                    android:textSize="30sp" />
+
+                <ImageView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:focusable="false"
+                    android:src="@drawable/baseline_arrow_forward_ios_24" />
+
+            </LinearLayout>
+            <include layout="@layout/component_divide_line"/>
+
+
+        </LinearLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">Test5</string>
-    <string name="main_schedule_btn1">全部</string>
+    <string name="main_schedule_btn1">新建</string>
     <string name = "main_schedule_btn2">未完成</string>
-    <string name="e_n">紧急重要</string>
-    <string name="no_e_n">重要不紧急</string>
-    <string name="e_no_n">紧急不重要</string>
-    <string name="no_e_no_n">不紧急不重要</string>
+    <string name="e_n">紧急\n重要</string>
+    <string name="no_e_n">重要\n不紧急</string>
+    <string name="e_no_n">紧急\n不重要</string>
+    <string name="no_e_no_n">不紧急\n不重要</string>
     <string name="component_view_format">%1$d/%2$d</string>
     <string name="sub_target_gird_text1">推荐目标</string>
     <string name="sub_target_grid_text2">自定义目标</string>
@@ -28,4 +28,9 @@
     <string name="title">标题</string>
     <string name = "subTitle">子标题</string>
     <string name="type">类型</string>
+    <string name="account">账号</string>
+    <string name="password">密码</string>
+    <string name="login">登录</string>
+    <string name="signup">注册</string>
+    <string name="delete">删除</string>
 </resources>

@@ -1,151 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <!-- 返回按钮 -->
-        <Button
-            android:id="@+id/btnBack"
-            android:layout_width="wrap_content"
+        <com.example.test5.components.TopBackBar
+            android:id="@+id/top"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:text="返回"
-            android:background="@color/black"
+            app:topTitle="专注设置"
             />
 
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
-            android:text="@string/sub_setting_title"
-            android:textSize="24sp"/>
-
-        <LinearLayout
-            android:id="@+id/layoutPriority"
+        <RelativeLayout
+            android:id="@+id/defaultDuration"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tvTitle"
-            android:layout_marginTop="24dp"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/sub_setting_btn1"
-                android:textSize="18sp"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="311dp"
-                android:text=">>>"  />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@id/layoutPriority"
-            android:background="@android:color/black" />
-
-        <LinearLayout
-            android:id="@+id/layoutDefaultFocusDuration"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/layoutPriority"
             android:gravity="center_vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="默认专注时长"
-                android:textSize="18sp" />
+                android:layout_alignParentLeft="true"
+                android:focusable="false"
+                android:textSize="35sp" />
+
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="275dp"
-                android:text=">>>" />
-        </LinearLayout>
+                android:src="@drawable/baseline_arrow_forward_ios_24"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:focusable="false"/>
+        </RelativeLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@id/layoutDefaultFocusDuration"
-            android:background="@android:color/black" />
+        <include layout="@layout/component_divide_line"/>
 
-        <LinearLayout
-            android:id="@+id/layoutDefaultBreakDuration"
+        <RelativeLayout
+            android:id="@+id/breakTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/layoutDefaultFocusDuration"
             android:gravity="center_vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:focusable="false"
                 android:text="默认休息时长"
-                android:textSize="18sp" />
+                android:layout_alignParentLeft="true"
+                android:textSize="35sp" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="275dp"
-                android:text=">>>" />
-        </LinearLayout>
+                android:src="@drawable/baseline_arrow_forward_ios_24"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:focusable="false"/>
+        </RelativeLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@id/layoutDefaultBreakDuration"
-            android:background="@android:color/black" />
+        <include layout="@layout/component_divide_line"/>
 
-        <LinearLayout
-            android:id="@+id/layoutContinuousFocusCount"
+        <RelativeLayout
+            android:id="@+id/concentratedTimes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/layoutDefaultBreakDuration"
             android:gravity="center_vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="连续专注次数"
-                android:textSize="18sp" />
+                android:layout_alignParentLeft="true"
+                android:focusable="false"
+                android:textSize="35sp" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="275dp"
-                android:text=">>>" />
-        </LinearLayout>
+                android:src="@drawable/baseline_arrow_forward_ios_24"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:focusable="false"/>
+        </RelativeLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@id/layoutContinuousFocusCount"
-            android:background="@android:color/black" />
-    </RelativeLayout>
+        <include layout="@layout/component_divide_line"/>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

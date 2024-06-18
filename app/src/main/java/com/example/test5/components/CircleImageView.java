@@ -3,9 +3,6 @@ package com.example.test5.components;
 
 这个文件的代码基本上是来自https://cloud.tencent.com/developer/article/1743086这篇文章的
 我对源代码进行了一些小的修改，以符合我们的要求
-1.类改名
-2.从https://blog.csdn.net/wljs17/article/details/103595942处copy来了drawableToBitamp这个函数，
-  用来解决相关问题
  */
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -18,17 +15,17 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.widget.ImageView;
 
 import android.annotation.SuppressLint;
+
+import androidx.annotation.Nullable;
+
 @SuppressLint("AppCompatCustomView")
-/**
- * 自定义的圆形ImageView，可以直接当组件在布局中使用。
- * @author caizhiming
- *
- */
 public class CircleImageView extends ImageView {
     private Paint paint ;
+    private OnClickListener listener;
     public CircleImageView(Context context) {
         this(context,null);
     }
@@ -39,10 +36,7 @@ public class CircleImageView extends ImageView {
         super(context, attrs, defStyle);
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);//此处添加了抗锯齿标志
     }
-    /**
-     * 绘制圆形图片
-     * @author caizhiming
-     */
+
     @Override
     protected void onDraw(Canvas canvas) {
         Drawable drawable = getDrawable();
@@ -58,13 +52,28 @@ public class CircleImageView extends ImageView {
             super.onDraw(canvas);
         }
     }
-    /**
-     * 获取圆形图片方法
-     * @param bitmap
-     * @param pixels
-     * @return Bitmap
-     * @author caizhiming
-     */
+
+    @Override
+    public void setOnClickListener(@Nullable OnClickListener l) {
+        listener = l;
+        super.setOnClickListener(l);
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+       if(event.getAction()!=MotionEvent.ACTION_DOWN) return false;
+        //return super.onTouchEvent(event);
+        double x = event.getX();
+        double y = event.getY();
+        double radius = getHeight()/2.0;
+        double xx=x-radius,yy=y-radius;
+        if(xx*xx+yy*yy-radius*radius<1e-5){
+            if(hasOnClickListeners()) listener.onClick(this);
+        }
+        return true;
+    }
+
     private Bitmap getCircleBitmap(Bitmap bitmap, int pixels) {
         Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
                 bitmap.getHeight(), Config.ARGB_8888);

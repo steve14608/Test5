@@ -19,13 +19,11 @@ import com.example.test5.adapter.CustomFragmentAdapter;
 
 
 public class NavigationFragment extends Fragment {
-    protected SQLiteDatabase database;
 
     protected int resourceId;
     protected ViewPager viewPager;
-    public NavigationFragment(SQLiteDatabase database, int resourceId,ViewPager viewPager){
+    public NavigationFragment( int resourceId,ViewPager viewPager){
         super();
-        this.database = database;
         this.resourceId=resourceId;
         this.viewPager=viewPager;
     }

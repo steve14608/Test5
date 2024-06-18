@@ -14,7 +14,6 @@
         <attr name="layout4" format="integer"/>
     </declare-styleable>
     <declare-styleable name="common_navigation_bar">
-        <attr name="childBackground" format="reference"/>
         <attr name="childTextSize" format="dimension"/>
         <attr name="childTextColor" format="reference"/>
     </declare-styleable>

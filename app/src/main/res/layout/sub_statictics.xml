@@ -5,33 +5,36 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical">
-    <RelativeLayout
+    <com.example.test5.components.TopBackBar
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="wrap_content"
+        custom:topTitle="统计数据">
 
 
-    </RelativeLayout>
+    </com.example.test5.components.TopBackBar>
+
     <com.example.test5.components.CommonNavigationBar
         android:id="@+id/navigationBar"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        custom:childBackground="@color/white"
-        custom:childTextSize="10sp"
-        custom:childTextColor="@color/sakura"
-        android:orientation="horizontal"/>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        custom:childTextColor="@color/black"
+        custom:childTextSize="10sp" />
+    <include layout="@layout/component_divide_line"
+        android:layout_height="1dp"
+        android:layout_width="match_parent" />
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5">
+        android:layout_weight="6">
 
     </androidx.viewpager.widget.ViewPager>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3">
+        android:layout_weight="2">
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

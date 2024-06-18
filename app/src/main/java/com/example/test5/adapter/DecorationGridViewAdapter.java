@@ -12,21 +12,28 @@ import android.widget.TextView;
 import com.example.test5.R;
 
 import com.example.test5.dataset.DecorationGridViewData;
+import com.example.test5.manager.AppearanceManager;
+import com.example.test5.subActivity.SubDecorationActivity;
 
+import java.lang.ref.WeakReference;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
 public class DecorationGridViewAdapter extends BaseAdapter implements View.OnClickListener {
     protected LinkedList<DecorationGridViewData> list;
-    private int currentDecorated=0;
+    private int type;
+    WeakReference<SubDecorationActivity> act;
+    protected int currentDecorated=0;
     private Context mcontext;
-    public DecorationGridViewAdapter(Context a, SQLiteDatabase db){
+    public DecorationGridViewAdapter(Context a,SubDecorationActivity ac,int type){
         super();
-        list = new LinkedList<DecorationGridViewData>();
+        list = new LinkedList<>();
         mcontext = a;
-        init(db);
+        act = new WeakReference<>(ac);
+        this.type=type;
+        init();
     }
-    protected void init(SQLiteDatabase db){
+    protected void init(){
 
     }
     public void changeDecoratedStatus(int position,boolean a){
@@ -38,12 +45,31 @@ public class DecorationGridViewAdapter extends BaseAdapter implements View.OnCli
         list.get(position).isDecorated=true;
         currentDecorated=position;
         notifyDataSetChanged();
+        notifyAppearanceChange(position,type);
+    }
+    private void notifyAppearanceChange(int index,int type){
+        //System.out.println(index+" "+type);
+        SubDecorationActivity.selected[type]=index;
+        switch(type){
+            case 0->{
+                AppearanceManager.updateTheme(index);
+                act.get().notifyColorChange();
+            }
+            case 1->{
+                AppearanceManager.updateWallpaper(index);
+            }
+            case 2->{
+                AppearanceManager.updateBottom(index);
+            }
+            case 3->{
+                AppearanceManager.updateProfilePic(index);
+            }
+        }
     }
     public int getViewPoisition(String title){
         int num=0;
-        ListIterator<DecorationGridViewData> iterator = list.listIterator();
-        while(iterator.hasNext()){
-            if(iterator.next().title.compareTo(title)==0)return num;
+        for (DecorationGridViewData decorationGridViewData : list) {
+            if (decorationGridViewData.title.compareTo(title) == 0) return num;
             num++;
         }
         return num;
@@ -69,16 +95,16 @@ public class DecorationGridViewAdapter extends BaseAdapter implements View.OnCli
         if(convertView==null){
             convertView = LayoutInflater.from(mcontext).inflate(R.layout.component_decoration_grid_view,parent,false);
             aTag = new ATag();
-            aTag.a=(ImageView)convertView.findViewById(R.id.imageView);
-            aTag.b=(TextView)convertView.findViewById(R.id.textView1);
-            aTag.c=(TextView)convertView.findViewById(R.id.textView2);
+            aTag.a= convertView.findViewById(R.id.imageView);
+            aTag.b= convertView.findViewById(R.id.textView1);
+            aTag.c= convertView.findViewById(R.id.textView2);
             convertView.setTag(aTag);
 
             convertView.setOnClickListener(this);
 
         }
         else aTag=(ATag) convertView.getTag();
-        aTag.a.setBackgroundResource(list.get(position).icon);
+        aTag.a.setBackground(list.get(position).cover);
         aTag.b.setText(list.get(position).title);
         aTag.c.setText(list.get(position).isDecorated?"已装扮" : "");
 
@@ -89,7 +115,6 @@ public class DecorationGridViewAdapter extends BaseAdapter implements View.OnCli
 
     @Override
     public void onClick(View v) {
-        //Toast.makeText(mcontext,v.toString(),Toast.LENGTH_SHORT).show();
         ATag aTag = (ATag) v.getTag();
         changeDecorated(getViewPoisition((String) aTag.b.getText()));
 

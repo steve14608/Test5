@@ -3,6 +3,7 @@
     xmlns:component_progress_value="http://schemas.android.com/apk/res-auto"
     android:layout_width="150dp"
     android:layout_height="150dp"
+    android:padding="10dp"
 
 
     >

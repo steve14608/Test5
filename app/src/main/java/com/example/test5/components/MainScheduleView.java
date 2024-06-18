@@ -84,7 +84,8 @@ public class MainScheduleView extends RelativeLayout {
         zz.setText(String.format(getResources().getString(R.string.component_view_format),finished_task_num,total_task_num));
         ProgressBar zzz = (ProgressBar)findViewById(R.id.schedule_view_progressBar);
         zzz.setMax(total_task_num);
-        zzz.setProgress(finished_task_num);
+        //zzz.setProgress(finished_task_num);
+        zzz.setProgress(finished_task_num,true);
 
     }
 

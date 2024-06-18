@@ -5,22 +5,19 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical">
-    <RelativeLayout
+    <com.example.test5.components.TopBackBar
+        android:id="@+id/top_back"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
-
-    </RelativeLayout>
+        android:layout_height="wrap_content"
+        custom:topTitle="主题商城"/>
     <com.example.test5.components.CommonNavigationBar
         android:id="@+id/navigationBar"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        custom:childBackground="@color/white"
+        android:layout_height="wrap_content"
         custom:childTextSize="10sp"
-        custom:childTextColor="@color/sakura"
+        custom:childTextColor="@color/black"
         android:orientation="horizontal"/>
+    <include layout="@layout/component_divide_line"/>
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"

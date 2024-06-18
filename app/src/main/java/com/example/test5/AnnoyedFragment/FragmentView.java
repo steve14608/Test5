@@ -1,6 +1,8 @@
 package com.example.test5.AnnoyedFragment;
 
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -16,44 +18,50 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.test5.MainActivity;
 import com.example.test5.R;
-import com.example.test5.adapter.CustomFragmentAdapter;
-import com.example.test5.adapter.ListViewAdapter;
+import com.example.test5.adapter.TaskListViewAdapter;
 import com.example.test5.components.NavigationFragment;
-import com.example.test5.dataset.ListViewData;
+import com.example.test5.dataset.TaskListViewData;
+import com.example.test5.manager.AppearanceManager;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.LinkedList;
 
-public class FragmentView extends NavigationFragment implements View.OnClickListener , AdapterView.OnItemSelectedListener {
-    ListViewAdapter listViewAdapter;
-    ArrayList<ListViewData> list;
+public class FragmentView extends NavigationFragment implements AdapterView.OnItemSelectedListener {
+    TaskListViewAdapter listViewAdapter;
+    ArrayList<TaskListViewData> list;
     private static boolean ifChecked;
-    public FragmentView(SQLiteDatabase li, ViewPager viewPager){
-        super(li, R.layout.main_view,viewPager);
-        list = new ArrayList<ListViewData>();
+    public FragmentView(ViewPager viewPager){
+        super( R.layout.main_view,viewPager);
+        list = new ArrayList<>();
+    }
+    public void refresh(){
+        View v = getView();
+        if(v!=null){
+            ((ListView)v.findViewById(R.id.main_view_list)).setAdapter(listViewAdapter);
+        }
     }
 
     @SuppressLint("Range")
     @Override
     public View initViewFromDatabase(View v) {
-        Cursor cursor = database.query("scheduleList",new String[]{"scheduleIndex","finished","type","title","subTitle"},null,null,null,null,null);
+        Cursor cursor = MainActivity.getSql().query("scheduleList",new String[]{"scheduleIndex","finished","type","title","subTitle"},"userId=?",new String[]{String.valueOf(MainActivity.userId)},null,null,null);
         while(cursor.moveToNext()){
-            ListViewData z = new ListViewData();
+            TaskListViewData z = new TaskListViewData();
             z.index= cursor.getInt(cursor.getColumnIndex("scheduleIndex"));
             z.isDone=cursor.getInt(cursor.getColumnIndex("finished"))==1;
             //z.background
+            z.type = cursor.getInt(cursor.getColumnIndex("type"));
             z.setSubTitle(cursor.getString(cursor.getColumnIndex("subTitle")));
             z.setTitle(cursor.getString(cursor.getColumnIndex("title")));
             list.add(z);
         }
         cursor.close();
-        ListView listView = (ListView) v.findViewById(R.id.main_view_list);
-        listViewAdapter= new ListViewAdapter(v.getContext(),list);
+        ListView listView = v.findViewById(R.id.main_view_list);
+        listViewAdapter= new TaskListViewAdapter(v.getContext(),list,this);
         listView.setAdapter(listViewAdapter);
         return super.initViewFromDatabase(v);
+
     }
 
     @Nullable
@@ -62,12 +70,17 @@ public class FragmentView extends NavigationFragment implements View.OnClickList
         View v = inflater.inflate(R.layout.main_view,container,false);
         v = initViewFromDatabase(v);
         v = addListener(v);
+        TextView textView = v.findViewById(R.id.checkBox);
+        textView.setOnClickListener(v1 -> {
+            ifChecked=!ifChecked;
+            listViewAdapter.reverseList();
+            textView.setBackgroundColor(ifChecked ? getResources().getColor(R.color.black) : getResources().getColor(R.color.white));
 
-        TextView textView = (TextView) v.findViewById(R.id.checkBox);
-        textView.setOnClickListener(FragmentView.this);
-        Spinner spinner = (Spinner) v.findViewById(R.id.spinner);
+        });
+        Spinner spinner = v.findViewById(R.id.spinner);
         spinner.setOnItemSelectedListener(this);
 
+        v.setBackground(AppearanceManager.wallpaper[1]);
         return v;
     }
 
@@ -78,53 +91,35 @@ public class FragmentView extends NavigationFragment implements View.OnClickList
         ifChecked=false;
     }
 
+
     public void sort(int element, int priority){
         interface Compare{
-            boolean cmp(ListViewData a,ListViewData b);
+            boolean cmp(TaskListViewData a, TaskListViewData b);
         }
         Compare cmp;
         switch (element){
             case 0:
-                cmp = new Compare() {
-                    @Override
-                    public boolean cmp(ListViewData a,ListViewData b) {
-                        return a.index>b.index;
-                    }
-                };
+                cmp = (a, b) -> a.index>b.index;
                 break;
             case 1:
-                cmp = new Compare() {
-                    @Override
-                    public boolean cmp(ListViewData a,ListViewData b) {
-                        if (a.type==priority){
-                            return false;
-                        }
-                        if (b.type==priority){
-                            return true;
-                        }
-                        return a.type>b.type;
+                cmp = (a, b) -> {
+                    if (a.type==priority){
+                        return false;
                     }
+                    if (b.type==priority){
+                        return true;
+                    }
+                    return a.type>b.type;
                 };
                 break;
             case 2:
-                cmp = new Compare() {
-                    @Override
-                    public boolean cmp(ListViewData a,ListViewData b) {
-                        boolean sign;
-                        if (priority==1){
-                            sign=true;
-                        }
-                        else{
-                            sign=false;
-                        }
-                        if (a.isDone==sign){
-                            return false;
-                        }
-                        if (b.isDone==sign){
-                            return true;
-                        }
+                cmp = (a, b) -> {
+                    boolean sign;
+                    sign= priority == 1;
+                    if (a.isDone==sign){
                         return false;
                     }
+                    return b.isDone == sign;
                 };
                 break;
             default:{
@@ -134,37 +129,76 @@ public class FragmentView extends NavigationFragment implements View.OnClickList
 
         }
 
-        ArrayList<ListViewData> list1 = new ArrayList<ListViewData>();
-        Collections.copy(list1,list);
+        ArrayList<TaskListViewData> list1 = new ArrayList<>(list);
         for (int i=0;i<list1.size();i++){
             for (int j=1;j<list1.size()-i;j++){
                 if (cmp.cmp(list1.get(j-1),list1.get(j))){
-                    ListViewData t=list1.get(j);
+
+                    TaskListViewData t=list1.get(j);
                     list1.set(j,list1.get(j-1));
                     list1.set(j-1,t);
                 }
             }
         }
-    }
-
-    @Override
-    public void onClick(View v) {
-        if(v.getId()==R.id.checkBox){
-            ifChecked=!ifChecked;
-            reverse();
-        }
-    }
-    private void reverse(){
-        listViewAdapter.reverseList();
+        listViewAdapter.newList(list1);
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        switch(position){
+            case 0:
+                sort(1,0);
+                break;
+            case 2:
+                sort(0,0);
+                break;
+            case 1:
+                sort(2,1);
+                break;
+            default:
+                throw new IllegalArgumentException("Unexpected input");
+        }
+    }
+    public void notifyChangeFinished(int index,boolean b){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("finished",b ? 1:0);
+        MainActivity.getSql().update("scheduleList",contentValues,"scheduleIndex=? and userId=?",new String[]{String.valueOf(index),String.valueOf(MainActivity.userId)});
+        fuck(b);
 
+
+        ((MainActivity)getActivity()).getFragmentSchedule().databaseRefresh();
+        FragmentConcentrate.handler.sendEmptyMessage(0x1211);
+    }
+    public void notifyDeleteItem(int index){
+        MainActivity.getSql().delete("scheduleList","scheduleIndex=? and userId=?",new String[]{String.valueOf(index),String.valueOf(MainActivity.userId)});
+
+
+
+        ((MainActivity)getActivity()).getFragmentSchedule().databaseRefresh();
+    }
+    @SuppressLint("Range")
+    private void fuck(boolean a){
+        Cursor cursor = MainActivity.getSql().query("statistics",new String[]{"data"},"userId=? and dataIndex=?",new String[]{String.valueOf(MainActivity.userId),"5"},null,null,null);
+        int z=0;
+        while (cursor.moveToNext()){
+            z = Integer.parseInt(cursor.getString(cursor.getColumnIndex("data")));
+        }
+        ContentValues co = new ContentValues();
+        if(a){
+            co.put("data",String.valueOf(z+1));
+            MainActivity.getSql().update("statistics",co,"userId=? and dataIndex=?",new String[]{String.valueOf(MainActivity.userId),"5"});
+        }
+        else{
+            co.put("data",String.valueOf(z-1));
+            MainActivity.getSql().update("statistics",co,"userId=? and dataIndex=?",new String[]{String.valueOf(MainActivity.userId),"5"});
+        }
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+    public void deleteItem(int position){
+        listViewAdapter.remove(position);
     }
 }

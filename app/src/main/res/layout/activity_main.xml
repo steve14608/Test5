@@ -24,22 +24,27 @@
         <RadioButton
             style="@style/main_navigation_radio_btn"
             android:id="@+id/main_navigation_btn0"
+
             android:text="@string/main_navigation_btn1"
+            android:textSize="20sp"
             />
 
         <RadioButton
             style="@style/main_navigation_radio_btn"
             android:id="@+id/main_navigation_btn1"
-            android:text="@string/main_navigation_btn2"/>
+            android:text="@string/main_navigation_btn2"
+            android:textSize="20sp"/>
 
         <RadioButton
             style="@style/main_navigation_radio_btn"
             android:id="@+id/main_navigation_btn2"
-            android:text="@string/main_navigation_btn3"/>
+            android:text="@string/main_navigation_btn3"
+            android:textSize="20sp"/>
         <RadioButton
             style="@style/main_navigation_radio_btn"
             android:id="@+id/main_navigation_btn3"
-            android:text="@string/main_navigation_btn4"/>
+            android:text="@string/main_navigation_btn4"
+            android:textSize="20sp"/>
 
 
     </RadioGroup>

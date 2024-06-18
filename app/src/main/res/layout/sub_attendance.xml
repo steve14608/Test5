@@ -2,17 +2,24 @@
 
 
 <!-- 签到部分 -->
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
+    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
+    <com.example.test5.components.TopBackBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:topTitle="签到"
+ />
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@drawable/component_attendance"
+        android:layout_weight="3"
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -23,31 +30,33 @@
 
         <Button
             android:id="@+id/checkInButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="192dp"
+            android:layout_height="46dp"
             android:layout_centerInParent="true"
             android:layout_marginTop="44dp"
-
             android:layout_marginBottom="40dp"
-            android:text="今日签到"
+            android:scaleType="centerCrop"
+            android:text="点击签到"
+            android:background="@drawable/start_con_btn"
+            android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/textView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.111"
+            app:layout_constraintHorizontal_bias="0.158"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.651" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="116dp"
+            android:layout_marginTop="104dp"
 
             android:text="已连续签到的天数"
-            android:textSize="30dp"
+            android:textSize="30sp"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintEnd_toStartOf="@+id/checkInCountTextView"
-            app:layout_constraintHorizontal_bias="0.419"
+            app:layout_constraintHorizontal_bias="0.547"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.192" />
@@ -56,12 +65,12 @@
             android:id="@+id/checkInCountTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="84dp"
+            android:layout_marginTop="76dp"
             android:text="0"
-            android:textSize="80dp"
+            android:textSize="80sp"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.885"
+            app:layout_constraintHorizontal_bias="0.915"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="UnknownId" />
@@ -73,7 +82,7 @@
         android:id="@+id/taskRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="6"
         android:padding="16dp"
         app:layout_constraintHeight_percent="0.7"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
@@ -81,7 +90,7 @@
         tools:layout_editor_absoluteX="0dp" />
     <!-- 任务列表部分 -->
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
 
 
 
